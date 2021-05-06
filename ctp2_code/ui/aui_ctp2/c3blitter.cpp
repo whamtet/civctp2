@@ -375,37 +375,37 @@ AUI_ERRCODE C3Blitter::Blt16To16FastMMX(
 					}
 #else // _MSCVER
 //					Assert(0);
-                    //fprintf(stderr, "%s L%d: Using Blt16To16FastMMX!\n", __FILE__, __LINE__);
-                    __asm__ (
-                        //"movl $scanWidth, %eax       \n\t"
-                        //"movl $srcBuf, %esi          \n\t"
-                        //"movl $destBuf, %edi         \n\t"
-                        "movl %%eax,%%ecx              \n\t"
-                        "movl $8,%%edx                \n\t"
-                        "shrl $3,%%eax                \n\t"
-                        "andl $0x7,%%ecx              \n\t"
-                        "addl $0,%%eax                \n\t"
-                        "jz  MMXCopyDone             \n\t"
-
-                        "_CopyMMX:                   \n\t"
-                        "movq (%%esi),%%mm0            \n\t"
-                        "movq %%mm0,(%%edi)            \n\t"
-                        "addl %%edx,%%esi              \n\t"
-                        "addl %%edx,%%edi              \n\t"
-                        "decl %%eax                   \n\t"
-                        "jnz  _CopyMMX               \n\t"
-
-                        "emms                        \n\t"
-
-                        "MMXCopyDone:                \n\t"
-
-                        "shrl %%ecx                   \n\t"
-                        "rep movsw                        \n\t"
-
-                        :
-                        : "a" (scanWidth), "S" (srcBuf), "D" (destBuf)
-                        : "%edx", "%ecx", "cc"
-                        );
+                    throw "fuck you!!!";
+//                    __asm__ (
+//                        //"movl $scanWidth, %eax       \n\t"
+//                        //"movl $srcBuf, %esi          \n\t"
+//                        //"movl $destBuf, %edi         \n\t"
+//                        "movl %%eax,%%ecx              \n\t"
+//                        "movl $8,%%edx                \n\t"
+//                        "shrl $3,%%eax                \n\t"
+//                        "andl $0x7,%%ecx              \n\t"
+//                        "addl $0,%%eax                \n\t"
+//                        "jz  MMXCopyDone             \n\t"
+//
+//                        "_CopyMMX:                   \n\t"
+//                        "movq (%%esi),%%mm0            \n\t"
+//                        "movq %%mm0,(%%edi)            \n\t"
+//                        "addl %%edx,%%esi              \n\t"
+//                        "addl %%edx,%%edi              \n\t"
+//                        "decl %%eax                   \n\t"
+//                        "jnz  _CopyMMX               \n\t"
+//
+//                        "emms                        \n\t"
+//
+//                        "MMXCopyDone:                \n\t"
+//
+//                        "shrl %%ecx                   \n\t"
+//                        "rep movsw                        \n\t"
+//
+//                        :
+//                        : "a" (scanWidth), "S" (srcBuf), "D" (destBuf)
+//                        : "%edx", "%ecx", "cc"
+//                        );
 #endif // _MSC_VER
 				} while ( (srcBuf += srcPitch) != stop );
 			}
